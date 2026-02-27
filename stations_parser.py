@@ -1,3 +1,7 @@
+"""
+This file parses the raw stations information
+"""
+
 import re
 from typing import List, Dict
 import pandas as pd
@@ -7,6 +11,13 @@ import pandas as pd
 # file at https://www.bom.gov.au/climate/data/lists_by_element/stations.txt
 
 def parse_value(x: str):
+    """
+    Parses the text table value.
+    @note interpreting dots as None
+    @note interpreting numbers as numbers instead of as a string
+    @param x: the value to parse
+    @return: the parsed value
+    """
     x = x.strip()
     if x in ("", "..", "....."):
         return None
@@ -17,6 +28,12 @@ def parse_value(x: str):
 
 
 def parse_bom_file(path: str) -> List[Dict]:
+    """
+    Given a structured stations file, parses it and return a python object which represents the file data
+    @param path: The path of the stations file
+    @return: A list of rows:
+                each row is a dict of column name -> its table value
+    """
     records = []
 
     with open(path, "r", encoding="utf-8") as f:
@@ -58,9 +75,12 @@ def parse_bom_file(path: str) -> List[Dict]:
     return records
 
 
+# Create a dataframe from the stations file
 data = parse_bom_file("stations.txt")
 df = pd.DataFrame(data)
 df = df[df["site"].notna() & df["start"].notna() & df["start"].apply(lambda x: isinstance(x, int))]
+
+# add a normalized site name
 df['site_norm'] = df.site_name.apply(
     lambda s: s.replace('NORTH TASMAN SEA (', '').replace('EAST', '').replace('WEST', '').replace(' ',
                                                                                                   '') if isinstance(s,

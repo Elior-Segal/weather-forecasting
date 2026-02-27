@@ -1,3 +1,7 @@
+"""
+This file Creates the solar_exposure.csv file which contains all the enriched solar exposure
+"""
+
 import os
 import zipfile
 from pathlib import Path
@@ -16,6 +20,11 @@ SUN_EXPOSURE_DF = "solar_exposure.csv"
 
 
 def download_solar_exposures():
+    """
+    Based on the location names and information from station_locations file,
+    Downloads from the australian weather site the full solar exposure information of all the locations
+    @note Downloads the solar exposure compressed to the SUN_EXPOSURES_ZIPS_FOLDER directory
+    """
     out_dir = SUN_EXPOSURES_ZIPS_FOLDER
     out_dir.mkdir(exist_ok=True)
 
@@ -54,6 +63,9 @@ def download_solar_exposures():
 
 
 def extract_solar_exposures():
+    """
+    Extracts the solar zip files from the SUN_EXPOSURES_ZIPS_FOLDER directory to the SUN_EXPOSURES_FOLDER
+    """
     # Configuration
     source_dir = SUN_EXPOSURES_ZIPS_FOLDER
     output_dir = SUN_EXPOSURES_FOLDER
@@ -73,6 +85,10 @@ def extract_solar_exposures():
 
 
 def create_solar_exposure_df():
+    """
+    Combines all the solar exposure CSVs in SUN_EXPOSURES_FOLDER into one bug solar exposure csv
+    @return: stores the combined csv to SUN_EXPOSURE_DF
+    """
     solar_exposures_dfs = []
     for root, dirs, files in os.walk(SUN_EXPOSURES_FOLDER):
         for file in files:
