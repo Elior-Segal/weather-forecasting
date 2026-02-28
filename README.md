@@ -10,7 +10,7 @@ In this project I predict whether it's going to rain in the following day on var
 * The python dependencies are described in the requirements.txt file
 * The optuna_db directory contains sql dbs of the Optuna studies I ruan.
 
-## Project Methodology and Documentation
+## Project Methodology and Report
 The PDF contains the methodology and my research choices.\
 The 2 PDFs are the same except one of them contains comments about what information was added after the presentations.
 ### Important Note:
