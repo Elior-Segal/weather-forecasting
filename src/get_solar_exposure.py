@@ -12,7 +12,7 @@ import requests
 from bs4 import BeautifulSoup
 from tqdm import tqdm
 
-from .station_locations import locations
+from station_locations import locations
 
 DIR_PATH = os.path.dirname(os.path.abspath(__file__))
 SUN_EXPOSURES_ZIPS_FOLDER = Path(os.path.join(DIR_PATH, "resources/sunshine/sun_exposures"))

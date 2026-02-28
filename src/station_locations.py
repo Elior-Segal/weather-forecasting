@@ -6,7 +6,7 @@ loc_to_lat_lon is a dict: [location name] -> Tuple[latitude, longitude]
 import numpy as np
 import pandas as pd
 
-from .stations_parser import df as stations_df
+from stations_parser import df as stations_df
 
 locations_name = ['Adelaide', 'Albany', 'Albury', 'AliceSprings', 'BadgerysCreek', 'Ballarat', 'Bendigo', 'Brisbane',
                   'Cairns', 'Canberra', 'Cobar', 'CoffsHarbour', 'Dartmoor', 'Darwin', 'GoldCoast', 'Hobart',
